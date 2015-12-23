@@ -54,5 +54,5 @@ void List::DeleteNext(Node* curNode)
 		delete temp;
 	}
 	else
-		throw "DeleteNext Error";
+		throw "DeleteNext error";
 }
