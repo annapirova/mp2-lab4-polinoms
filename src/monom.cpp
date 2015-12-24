@@ -1,1 +1,62 @@
 #include "monom.h"
+
+using namespace std;
+
+Monom::Monom(double _coef, int x, int y, int z)
+{
+	if ((x<0)||(y<0)||(z<0)||(x>9)||(y>9)||(z>9))
+		throw "Incorrect power";
+	coef = _coef;
+	power = x*100+y*10+z;
+}
+
+double Monom::GetCoef() const
+{
+	return coef;
+}
+
+int Monom::GetX() const
+{
+	return (power/100);
+}
+
+int Monom::GetY() const
+{
+	return ((power%100)/10);
+}
+
+int Monom::GetZ() const
+{
+	return (power%10);
+}
+
+ostream& operator << (ostream& ostr, const Monom& m)
+{
+	if ((m.GetCoef()==0)||(m.GetCoef()==1))
+		cout<<m.GetCoef();
+	else
+		ostr<<m.GetCoef()<<"x^"<<m.GetX()<<"y^"<<m.GetY()<<"z^"<<m.GetZ();
+	return ostr;
+}
+
+//Monom operator* (int a, Monom& m)
+//{
+//	Monom temp(m);
+//	temp.coef = a*m.coef;
+//	return temp;
+//}
+//
+//bool Monom::Equal(const Monom& m1, const Monom& m2)
+//{
+//	return(m1.power==m2.power);
+//}
+
+int Monom::GetPower() const
+{
+	return power;
+}
+
+void Monom::SetCoeff(double _coef)
+{
+	coef=_coef;
+}

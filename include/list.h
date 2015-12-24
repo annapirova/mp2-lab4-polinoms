@@ -1,13 +1,13 @@
 #pragma once
+#include "monom.h"
 
 struct Node
 {
 	Node *next;
-	int value;
+	Monom m;
 
-	Node(int _value = 0)
+	Node(Monom _m) : m(_m)
 	{
-		value = _value;
 		next = 0;
 	}
 };
