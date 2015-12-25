@@ -11,6 +11,6 @@ class Polinom
 private:
 	List list;
 public:
-	Polinom (/*Monom *m*/);
+	Polinom ();
 	void AddMonom(Monom& m); 
 };

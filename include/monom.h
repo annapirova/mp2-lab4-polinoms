@@ -16,8 +16,10 @@ public:
 	int GetZ() const;
 	int GetPower() const;
 	void SetCoeff(double _coef);
-	//static bool Equal(const Monom& m1, const Monom& m2);
-	//bool operator < (const Monom& m1, const Monom& m2);
+	//bool operator ==(const Monom& m2);
+	//bool operator !=(const Monom& m2);
+	//bool operator < (const Monom& m2);
 	//friend Monom operator* (int a, Monom& m);
 };
+
 std::ostream& operator << (std::ostream& ostr, const Monom& m);
