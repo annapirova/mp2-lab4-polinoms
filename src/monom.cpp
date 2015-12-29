@@ -60,3 +60,8 @@ void Monom::SetCoeff(double _coef)
 {
 	coef=_coef;
 }
+
+Monom::Monom(double _coef, int _power)
+	: coef(_coef), power(_power)
+{
+}

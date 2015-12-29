@@ -2,7 +2,7 @@
 
 List::List()
 {
-	first = 0;
+	head.next = &head;
 }
 
 void List::Insert(Node* curNode, Node* insNode)//предп, что указатели указывают на валидные звенья
@@ -11,48 +11,37 @@ void List::Insert(Node* curNode, Node* insNode)//предп, что указатели указывают 
 	curNode->next=insNode;
 }
 
-Node* List::GetFirst()
+Node* List::GetHead()
 {
-	return first;
-}
-
-void List::InsertFirst(Node* node)
-{
-	node->next=first;
-	first=node;
+	return &head;
 }
 
 List::~List()
 {
-	Node* current = GetFirst();
-	while (current!=0)
+	while (head.next != &head)
 	{
-		Node* temp=current->next;
-		delete current;
-		current=temp;
+		DeleteNext(&head);
 	}
-}
-
-void List::DeleteFirst()
-{
-	if (first!=0)
-	{
-		Node* temp = first;
-		first = first->next;
-		delete temp;
-	}
-	else
-		throw "Empty list";
 }
 
 void List::DeleteNext(Node* curNode)
 {
-	if (curNode->next!=0)
+	Node* temp=curNode->next;
+	curNode->next=curNode->next->next;
+	delete temp;
+}
+
+List::List(const List& list)
+{
+	head.m = list.head.m;
+	head.next = &head;
+
+	Node* q = &head;
+	Node* p = list.head.next;
+	while(p != &list.head)
 	{
-		Node* temp=curNode->next;
-		curNode->next=curNode->next->next;
-		delete temp;
+		List::Insert(q, new Node(p->m));
+		p = p->next;
+		q = q->next;
 	}
-	else
-		throw "DeleteNext error";
 }

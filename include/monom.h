@@ -10,6 +10,7 @@ private:
 	int power;
 public:
 	Monom(double _coef, int x, int y, int z);
+	Monom(double _coef = 0, int _power = 0);
 	double GetCoef() const;
 	int GetX() const;
 	int GetY() const;

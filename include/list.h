@@ -6,7 +6,7 @@ struct Node
 	Node *next;
 	Monom m;
 
-	Node(Monom _m) : m(_m)
+	Node(Monom _m = Monom()) : m(_m)
 	{
 		next = 0;
 	}
@@ -15,13 +15,13 @@ struct Node
 class List
 {
 private:
-	Node *first;
+	Node head;
+	List& operator=(const List&);
 public:
 	List();
+	List(const List& list);
+	Node* GetHead();
 	static void Insert(Node* curNode, Node* insNode);//нет доступа к полям объекта List
-	Node* GetFirst();
-	void InsertFirst(Node* node);
 	~List();
-	void DeleteFirst();
 	static void DeleteNext(Node* curNode);
 };

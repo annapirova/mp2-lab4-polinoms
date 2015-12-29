@@ -11,6 +11,7 @@ class Polinom
 private:
 	List list;
 public:
-	Polinom ();
-	void AddMonom(Monom& m); 
+	Polinom();
+	void AddMonom(const Monom& m); 
+	Polinom operator + (Polinom& p);
 };
