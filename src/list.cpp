@@ -18,10 +18,7 @@ Node* List::GetHead()
 
 List::~List()
 {
-	while (head.next != &head)
-	{
-		DeleteNext(&head);
-	}
+	Clear();
 }
 
 void List::DeleteNext(Node* curNode)
@@ -43,5 +40,36 @@ List::List(const List& list)
 		List::Insert(q, new Node(p->m));
 		p = p->next;
 		q = q->next;
+	}
+}
+
+void List::Clear()
+{
+	while (head.next != &head)
+	{
+		DeleteNext(&head);
+	}
+}
+
+List& List::operator=(const List& l)
+{
+	
+	if (this==&l)
+		return *this;
+	else
+	{
+	this->Clear();
+
+	head.m = l.head.m;
+	head.next = &head;
+
+	Node* q = &head;
+	Node* p = l.head.next;
+	while(p != &l.head)
+	{
+		List::Insert(q, new Node(p->m));
+		p = p->next;
+		q = q->next;
+	}
 	}
 }

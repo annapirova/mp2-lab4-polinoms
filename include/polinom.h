@@ -14,4 +14,11 @@ public:
 	Polinom();
 	void AddMonom(const Monom& m); 
 	Polinom operator + (Polinom& p);
-};
+	Polinom operator * (double number);
+	Polinom operator - (Polinom& p);
+	Polinom operator * (Polinom& p);
+	friend std::ostream& operator << (std::ostream& ostr, const Polinom& p);
+	//Polinom operator = (Polinom& p);
+}; 
+
+std::ostream& operator << (std::ostream& ostr, const Polinom& p);

@@ -1,7 +1,5 @@
 #include "monom.h"
 
-using namespace std;
-
 Monom::Monom(double _coef, int x, int y, int z)
 {
 	if ((x<0)||(y<0)||(z<0)||(x>9)||(y>9)||(z>9))
@@ -64,4 +62,17 @@ void Monom::SetCoeff(double _coef)
 Monom::Monom(double _coef, int _power)
 	: coef(_coef), power(_power)
 {
+}
+
+Monom Monom::operator*(const Monom& m)
+{
+	Monom temp;	
+	temp.coef = this->coef * m.coef;
+	int x = this->GetX() + m.GetX();
+	int y = this->GetY() + m.GetY();
+	int z = this->GetZ() + m.GetZ();
+	if ((x>9)||(y>9)||(z>9))
+		throw "Degree more than 9";
+	temp.power = x*100 + y*10 + z;
+	return temp;
 }

@@ -1,7 +1,7 @@
  /*класс или структура Монома (double коэффициент, целая свернутая степень)*/
 #pragma once
 #include <iostream>
-
+using namespace std;
 
 class Monom
 {
@@ -17,6 +17,7 @@ public:
 	int GetZ() const;
 	int GetPower() const;
 	void SetCoeff(double _coef);
+	Monom operator * (const Monom& m);
 	//bool operator ==(const Monom& m2);
 	//bool operator !=(const Monom& m2);
 	//bool operator < (const Monom& m2);

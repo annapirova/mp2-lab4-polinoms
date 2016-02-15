@@ -76,3 +76,52 @@ Polinom Polinom:: operator + (Polinom& P)
 	}
 	return Q;
 }
+
+Polinom Polinom::operator * (double number)
+{
+	if (number==0)
+	{
+		Polinom Q;
+		return Q;
+	}
+	Polinom Q(*this);
+	Node* current = Q.list.GetHead()->next;
+	//Node* previous = Q.list.GetHead();
+	while (current->m.GetPower() != -1)
+	{
+		current->m.SetCoeff(current->m.GetCoef()*number);
+		current = current->next;
+	}
+	return Q;
+}
+
+Polinom Polinom::operator - (Polinom& p)
+{
+	return *this + p*(-1);
+
+}
+
+Polinom Polinom::operator*(Polinom& p)
+{
+	Polinom temp;
+	Node * current1 = this->list.GetHead()->next;
+	while (current1->m.GetPower() != -1)
+	{
+		Node * current2 = p.list.GetHead()->next;
+		while (current2->m.GetPower() != -1)
+		{
+			temp.AddMonom(current1->m * current2->m);
+			current2 = current2->next;
+		}
+		current1 = current1->next;
+	}
+	return temp;
+}
+
+//ostream& operator << (ostream& ostr, /*const */Polinom& p)
+//{
+//	Node * current = p.list.GetHead()->next;
+//	while (current->m.GetPower() != -1)
+//	{s
+//	}
+//}
