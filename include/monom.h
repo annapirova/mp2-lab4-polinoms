@@ -25,3 +25,4 @@ public:
 };
 
 std::ostream& operator << (std::ostream& ostr, const Monom& m);
+//std::istream& operator << (std::istream& istr, const Monom& m);

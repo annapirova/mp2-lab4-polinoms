@@ -43,25 +43,26 @@ void main()
 		q.AddMonom(Monom(-2.0, 1, 0, 3));
 		q.AddMonom(Monom(1.0, 4, 0, 0));
 		q.AddMonom(Monom(3.0, 1, 2, 3));
+		cout<<q<<endl;
 
-		Polinom sum = p+q;
-		Polinom multi = q*2;
+		//Polinom sum = p+q;
+		//Polinom multi = q*2;
 
-		Polinom multi2 = q*0;
+		//Polinom multi2 = q*0;
 
-		Polinom subtr = q-p;
-		List list1;
-		list1.Insert(list1.GetHead(), new Node (m));
-		list1.Insert(list1.GetHead(), new Node (m2));
-		//list1.Clear();
-		
-		List list2;
-		list2.Insert(list2.GetHead(), new Node (m3));
-		list2.Insert(list2.GetHead(), new Node (m4));
-		list2 = list1;
-		//p = q*2;
-		Polinom z = p*q;
-		int b = 1;
+		//Polinom subtr = q-p;
+		//List list1;
+		//list1.Insert(list1.GetHead(), new Node (m));
+		//list1.Insert(list1.GetHead(), new Node (m2));
+		////list1.Clear();
+		//
+		//List list2;
+		//list2.Insert(list2.GetHead(), new Node (m3));
+		//list2.Insert(list2.GetHead(), new Node (m4));
+		//list2 = list1;
+		////p = q*2;
+		//Polinom z = p*q;
+		//int b = 1;
 		//Monom m1 = 2*m;
 		//cout<<m1<<endl;
 

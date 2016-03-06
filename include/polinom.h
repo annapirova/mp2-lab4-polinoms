@@ -17,8 +17,9 @@ public:
 	Polinom operator * (double number);
 	Polinom operator - (Polinom& p);
 	Polinom operator * (Polinom& p);
-	friend std::ostream& operator << (std::ostream& ostr, const Polinom& p);
+	friend std::ostream& operator << (std::ostream& ostr, /*const*/ Polinom& p);
+	//friend std::istream& operator >> (std::istream& istr, Polinom& p);
 	//Polinom operator = (Polinom& p);
 }; 
 
-std::ostream& operator << (std::ostream& ostr, const Polinom& p);
+//std::ostream& operator << (std::ostream& ostr, const Polinom& p);

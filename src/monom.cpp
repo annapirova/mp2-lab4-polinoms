@@ -76,3 +76,8 @@ Monom Monom::operator*(const Monom& m)
 	temp.power = x*100 + y*10 + z;
 	return temp;
 }
+
+//istream& operator << (std::istream& istr, const Monom& m)
+//{
+//	
+//}

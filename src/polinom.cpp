@@ -118,10 +118,24 @@ Polinom Polinom::operator*(Polinom& p)
 	return temp;
 }
 
-//ostream& operator << (ostream& ostr, /*const */Polinom& p)
+ostream& operator << (ostream& ostr, /*const*/ Polinom& p)
+{
+	Node * current = p.list.GetHead()->next;
+	cout<<" "<<current->m;
+	current = current->next;
+	while (current->m.GetPower() != -1)
+	{
+		if (current->m.GetCoef()>0)
+			cout<<" + "<<current->m;
+		else
+			cout<<" "<<current->m;
+		current = current->next;
+	}
+	cout<<endl;
+	return ostr;
+}
+
+//istream& operator >> (std::istream& istr, Polinom& p)
 //{
-//	Node * current = p.list.GetHead()->next;
-//	while (current->m.GetPower() != -1)
-//	{s
-//	}
+//
 //}
