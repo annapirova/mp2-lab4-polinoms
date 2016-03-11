@@ -1,6 +1,6 @@
 #include "monom.h"
 
-Monom::Monom(double _coef, int x, int y, int z)
+Monom::Monom(int _coef, int x, int y, int z)
 {
 	if ((x<0)||(y<0)||(z<0)||(x>9)||(y>9)||(z>9))
 		throw "Incorrect power";
@@ -8,7 +8,7 @@ Monom::Monom(double _coef, int x, int y, int z)
 	power = x*100+y*10+z;
 }
 
-double Monom::GetCoef() const
+int Monom::GetCoef() const
 {
 	return coef;
 }
@@ -54,12 +54,12 @@ int Monom::GetPower() const
 	return power;
 }
 
-void Monom::SetCoeff(double _coef)
+void Monom::SetCoeff(int _coef)
 {
 	coef=_coef;
 }
 
-Monom::Monom(double _coef, int _power)
+Monom::Monom(int _coef, int _power)
 	: coef(_coef), power(_power)
 {
 }
@@ -75,6 +75,11 @@ Monom Monom::operator*(const Monom& m)
 		throw "Degree more than 9";
 	temp.power = x*100 + y*10 + z;
 	return temp;
+}
+
+void Monom:: SetPower (int x, int y, int z)
+{
+	power = x*100 + y*10 + z;
 }
 
 //istream& operator << (std::istream& istr, const Monom& m)

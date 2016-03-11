@@ -1,8 +1,11 @@
 #include "polinom.h"
+#include <string>
+#include <sstream>
+#include <cstdlib>
 
 Polinom::Polinom ()
 {
-	list.GetHead()->m = Monom(0.0, -1);
+	list.GetHead()->m = Monom(0, -1);
 }
 
 void Polinom::AddMonom(const Monom& _m) 
@@ -18,7 +21,7 @@ void Polinom::AddMonom(const Monom& _m)
 	if(_m.GetPower() == current->m.GetPower())
 	{
 		current->m.SetCoeff(current->m.GetCoef() + _m.GetCoef());
-		if(current->m.GetCoef() == 0.0)
+		if(current->m.GetCoef() == 0)
 		{
 			List::DeleteNext(previous);
 		}
@@ -135,7 +138,53 @@ ostream& operator << (ostream& ostr, /*const*/ Polinom& p)
 	return ostr;
 }
 
-//istream& operator >> (std::istream& istr, Polinom& p)
-//{
-//
-//}
+istream& operator >> (std::istream& istr, Polinom& p)
+{
+	string input;
+	getline(istr, input);
+	for (int i = 0; i < input.length() - 1; i++)//может убрать i++?
+	{
+		Monom m;
+		int coeff;
+
+		while ((!isdigit(input[i])) && (input[i]!='-'))
+		{
+			i++;
+		}
+		//if ((isdigit(input[i])) || (input[i]) = '-'))
+		//{
+			string temp;
+			while (input[i] != 'x')
+			{
+			temp += input[i]; 
+			i++;
+			}
+			istringstream(temp) >> coeff;
+			m.SetCoeff(coeff);
+		//}
+
+		i++;
+		i++;
+		string temp1;
+		temp1 = input[i];
+		int x;
+		istringstream(temp1) >> x;
+		i++;
+		i++;
+		i++;
+		string temp2;
+		temp2 = input[i];
+		int y;
+		istringstream(temp2) >> y;
+		i++;
+		i++;
+		i++;
+		string temp3;
+		temp3 = input[i];
+		int z;
+		istringstream(temp3) >> z;
+		m.SetPower(x, y, z);
+		p.AddMonom(m);
+	}
+	return istr;
+}
