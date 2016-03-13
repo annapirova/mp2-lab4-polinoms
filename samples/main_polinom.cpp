@@ -6,6 +6,8 @@ using namespace std;
 
 void main()
 {
+	try
+	{
 	cout << "Enter polinom p1" <<endl;
 	Polinom p1;
 	cin >> p1;
@@ -53,10 +55,15 @@ void main()
 	cin >> counter;
 	}
 	int ad = 9;
+		
+	}
+	catch (const char* error)
+	{
+		cout<<error<<endl;
+	}
 
 
-	//try
-	//{
+
 	//	/*List c;
 	//	List::Insert(c.GetHead(), new Node(1));
 	//	List::Insert(c.GetHead(), new Node(2));
@@ -105,10 +112,6 @@ void main()
 	//	p = q;
 	//	int f = 111;
 
-	//}
-	//catch (const char* error)
-	//{
-	//	cout<<error<<endl;
-	//}
+
 
 }

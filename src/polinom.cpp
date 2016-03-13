@@ -142,47 +142,239 @@ istream& operator >> (std::istream& istr, Polinom& p)
 {
 	string input;
 	getline(istr, input);
-	for (int i = 0; i < input.length() - 1; i++)//может убрать i++?
+	string temporary;
+	for (int j = 0; j < input.length(); j++)
+	{
+		if (input[j]!=' ')
+			temporary.push_back(input[j]);
+	}
+	for (int i = 0; i < temporary.length()/* - 1*/; i++)//может убрать i++?
 	{
 		Monom m;
 		int coeff;
-
-		while ((!isdigit(input[i])) && (input[i]!='-'))
+		if (temporary[i]=='+')
+			i++;
+		int x=0, y=0, z=0;
+		if ((isdigit(temporary[i])) || ((temporary[i]) == '-'))
 		{
-			i++;
-		}
-		//if ((isdigit(input[i])) || (input[i]) = '-'))
-		//{
 			string temp;
-			while (input[i] != 'x')
+			while (temporary[i] != 'x')
 			{
-			temp += input[i]; 
-			i++;
+				temp += temporary[i];
+				if (i!=temporary.length()-1)
+				{
+				i++;
+				}
+				else	
+				break;
+				if ((!isdigit(temporary[i]))&&(temporary[i]!='y')&&(temporary[i]!='z')&&((temporary[i]=='+')||(temporary[i]=='-')||(i==temporary.length()-1)))
+					throw "Incorrect entries";
 			}
 			istringstream(temp) >> coeff;
 			m.SetCoeff(coeff);
-		//}
+			
+			if (((temporary[i]!='x')&&(temporary[i]!='y')&&(temporary[i]!='z'))&&((i==temporary.length()-1)||(temporary[i]=='+')||(temporary[i]=='-')))
+				{
+					m.SetPower(x, y, z);
+		        p.AddMonom(m);
+				break;
+			}
 
-		i++;
-		i++;
-		string temp1;
-		temp1 = input[i];
-		int x;
-		istringstream(temp1) >> x;
-		i++;
-		i++;
-		i++;
-		string temp2;
-		temp2 = input[i];
-		int y;
-		istringstream(temp2) >> y;
-		i++;
-		i++;
-		i++;
-		string temp3;
-		temp3 = input[i];
-		int z;
-		istringstream(temp3) >> z;
+		}
+		else
+		{
+			if ((temporary[i] == 'x')||(temporary[i] == 'y')||(temporary[i] == 'z'))
+			{
+				m.SetCoeff(1);
+			}
+			else
+				throw "Incorrect entries";
+
+		}
+
+		if ((temporary[i]!='+')&&(temporary[i]!='-'))
+		{
+			/*if ((temporary[i]!='x'))
+			{
+				throw "Incorrect entries";
+			}
+			else*/
+			if (temporary[i]=='x')
+			{
+				if(i!=temporary.length()-1)
+				{
+					i++;
+
+					if ((temporary[i]!='+')&&(temporary[i]!='-'))
+					{
+						if ((temporary[i]!='^'))
+						{
+							if((temporary[i]!='y')&&(temporary[i]!='z'))
+							{
+								throw "Incorrect entries";
+							}
+							else
+								x=1;
+						}
+						else
+							if(i==temporary.length()-1)
+							{
+								throw "Incorrect entries";
+							}
+							else
+							{
+								i++;
+							}
+					}
+				}
+				else
+				{
+					x = 1;
+					m.SetPower(x, y, z);
+					p.AddMonom(m);
+					break;
+				}
+			
+				if (temporary[i-1]=='^')
+				{
+					if ((isdigit(temporary[i])))
+					{
+						string temp_x;
+						temp_x = temporary[i];
+						istringstream(temp_x) >> x;
+						if(i!=temporary.length()-1)
+						{
+							i++;
+						}
+						else
+							break;
+					}
+					else 
+						throw "Incorrect entries";
+				}
+
+		}
+			else
+				if ((temporary[i]!='y')&&(temporary[i]!='z'))
+					throw "Incorrect entries";
+		}
+
+		if ((temporary[i]!='+')&&(temporary[i]!='-'))
+		{
+			//if (temporary[i]!='y')
+			//{
+			//	throw "Incorrect entries";
+			//}
+			//else
+			if (temporary[i]=='y')
+			{
+				if(i!=temporary.length()-1)
+				{
+					i++;
+
+					if ((temporary[i]!='+')&&(temporary[i]!='-'))
+					{
+						if ((temporary[i]!='^'))
+						{
+							if(temporary[i]!='z')
+							{
+								throw "Incorrect entries";
+							}
+							else
+								y = 1;
+						}
+						else
+							if(i==temporary.length()-1)
+							{
+								throw "Incorrect entries";
+							}
+							else
+							{
+								i++;
+							}
+					}
+				}
+				else
+				{
+					y = 1;
+					m.SetPower(x, y, z);
+					p.AddMonom(m);
+					break;
+				}
+
+				if (temporary[i-1]=='^')
+				{
+					if (isdigit(temporary[i]))
+					{
+						string temp_y;
+						temp_y = temporary[i];
+						istringstream(temp_y) >> y;
+						if(i!=temporary.length()-1)
+						{
+							i++;
+						}
+						else
+							break;
+					}
+					else 
+						throw "Incorrect entries";
+				}
+		}
+		
+		else
+			if (temporary[i]!='z')
+				throw "Incorrect entries";
+		}
+
+
+		if ((temporary[i]!='+')&&(temporary[i]!='-'))
+		{
+			if (temporary[i]!='z')
+			{
+				throw "Incorrect entries";
+			}
+			else
+				if(i!=temporary.length()-1)
+				{
+					i++;
+
+					if ((temporary[i]!='+')&&(temporary[i]!='-'))
+					{
+						if ((temporary[i]!='^'))
+						{
+							throw "Incorrect entries";
+						}
+						else
+							if(i==temporary.length()-1)
+							{
+								throw "Incorrect entries";
+							}
+							else
+							{
+								i++;
+							}
+					}
+				}
+				else
+				{
+					z = 1;
+					m.SetPower(x, y, z);
+					p.AddMonom(m);
+					break;
+				}
+				if (temporary[i-1]=='^')
+				{
+
+					if (isdigit(temporary[i]))
+					{
+						string temp_z;
+						temp_z = temporary[i];
+						istringstream(temp_z) >> z;
+					}
+					else 
+						throw "Incorrect entries";
+				}
+		}
 		m.SetPower(x, y, z);
 		p.AddMonom(m);
 	}

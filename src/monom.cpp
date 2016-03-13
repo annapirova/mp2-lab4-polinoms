@@ -30,7 +30,7 @@ int Monom::GetZ() const
 
 ostream& operator << (ostream& ostr, const Monom& m)
 {
-	if ((m.GetCoef()==0)||(m.GetCoef()==1))
+	if ((m.GetCoef()==0)||(m.GetPower()==0))
 		cout<<m.GetCoef();
 	else
 		ostr<<m.GetCoef()<<"x^"<<m.GetX()<<"y^"<<m.GetY()<<"z^"<<m.GetZ();
