@@ -5,6 +5,9 @@
 #pragma once
 #include "monom.h"
 #include "list.h"
+#include <string>
+#include <sstream>
+#include <cstdlib>
 
 class Polinom
 {

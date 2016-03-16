@@ -1,7 +1,6 @@
 #include "polinom.h"
-#include <string>
-#include <sstream>
-#include <cstdlib>
+
+
 
 Polinom::Polinom ()
 {
@@ -158,25 +157,37 @@ istream& operator >> (std::istream& istr, Polinom& p)
 		if ((isdigit(temporary[i])) || ((temporary[i]) == '-') && (isdigit(temporary[i+1])))
 		{
 			string temp;
-			while (temporary[i] != 'x')
+			while ((temporary[i] != 'x')&&(temporary[i] != 'y')&&(temporary[i] != 'z')&&(i!=temporary.length()))
 			{
 				temp += temporary[i];
 				if (i!=temporary.length()-1)
 				{
-				i++;
+					i++;
 				}
 				else	
-				break;
-				if ((!isdigit(temporary[i]))&&(temporary[i]!='y')&&(temporary[i]!='z')&&((temporary[i]=='+')||(temporary[i]=='-')||(i==temporary.length()-1)))
-					throw "Incorrect entries";
+					break;
+				/*if ((!isdigit(temporary[i]))&&(temporary[i]!='y')&&(temporary[i]!='z')&&((temporary[i+1]=='+')||(temporary[i+1]=='-')||(i!=temporary.length()-1)))
+				throw "Incorrect entries";*///????????!!!!!!!!!
+				if ((temporary[i]=='+')||(temporary[i]=='-')/*||(i==temporary.length()-1)*/)
+				{
+					break;
+				}
 			}
 			istringstream(temp) >> coeff;
 			m.SetCoeff(coeff);
-			
-			if (((temporary[i]!='x')&&(temporary[i]!='y')&&(temporary[i]!='z'))&&((i==temporary.length()-1)||(temporary[i]=='+')||(temporary[i]=='-')))
-				{
-					m.SetPower(x, y, z);
-		        p.AddMonom(m);
+
+			if (((temporary[i]!='x')&&(temporary[i]!='y')&&(temporary[i]!='z'))&&(/*(i==temporary.length()-1)||*/(temporary[i]=='+')||(temporary[i]=='-')))
+			{
+				m.SetPower(x, y, z);
+				p.AddMonom(m);
+				i--;
+				continue;
+			}
+			if (((temporary[i]!='x')&&(temporary[i]!='y')&&(temporary[i]!='z'))&&(i==temporary.length()-1))
+			{
+				m.SetPower(x, y, z);
+				p.AddMonom(m);
+				i--;
 				break;
 			}
 
@@ -195,7 +206,7 @@ istream& operator >> (std::istream& istr, Polinom& p)
 				}
 				else
 				{
-				throw "Incorrect entries";
+					throw "Incorrect entries";
 				}
 
 		}
@@ -225,24 +236,34 @@ istream& operator >> (std::istream& istr, Polinom& p)
 							{
 								throw "Incorrect entries";
 							}
-							else
-							{
-								i++;
-							}
+							//else
+							//{
+							//	i++;
+							//}
+					}
+					else
+					{
+						i--;
+						x = 1;
+						m.SetPower(x, y, z);
+						p.AddMonom(m);
+						continue;
 					}
 				}
 				else
 				{
+					
 					x = 1;
 					m.SetPower(x, y, z);
 					p.AddMonom(m);
 					break;
 				}
-			
-				if (temporary[i-1]=='^')
+
+				if (temporary[i]=='^')
 				{
-					if ((isdigit(temporary[i])))
+					if ((isdigit(temporary[i+1])))
 					{
+						i++;
 						string temp_x;
 						temp_x = temporary[i];
 						istringstream(temp_x) >> x;
@@ -261,7 +282,7 @@ istream& operator >> (std::istream& istr, Polinom& p)
 						throw "Incorrect entries";
 				}
 
-		}
+			}
 			else
 				if ((temporary[i]!='y')&&(temporary[i]!='z'))
 					throw "Incorrect entries";
@@ -291,10 +312,18 @@ istream& operator >> (std::istream& istr, Polinom& p)
 							{
 								throw "Incorrect entries";
 							}
-							else
-							{
-								i++;
-							}
+							//else
+							//{
+							//	i++;
+							//}
+					}
+					else
+					{
+						i--;
+						y = 1;
+						m.SetPower(x, y, z);
+						p.AddMonom(m);
+						continue;
 					}
 				}
 				else
@@ -305,10 +334,11 @@ istream& operator >> (std::istream& istr, Polinom& p)
 					break;
 				}
 
-				if (temporary[i-1]=='^')
+				if (temporary[i]=='^')
 				{
-					if (isdigit(temporary[i]))
+					if (isdigit(temporary[i+1]))
 					{
+						i++;
 						string temp_y;
 						temp_y = temporary[i];
 						istringstream(temp_y) >> y;
@@ -326,11 +356,11 @@ istream& operator >> (std::istream& istr, Polinom& p)
 					else 
 						throw "Incorrect entries";
 				}
-		}
-		
-		else
-			if (temporary[i]!='z')
-				throw "Incorrect entries";
+			}
+
+			else
+				if (temporary[i]!='z')
+					throw "Incorrect entries";
 		}
 
 
@@ -356,10 +386,18 @@ istream& operator >> (std::istream& istr, Polinom& p)
 							{
 								throw "Incorrect entries";
 							}
-							else
-							{
-								i++;
-							}
+							//else
+							//{
+							//	i++;
+							//}
+					}
+					else
+					{
+						i--;
+						z = 1;
+						m.SetPower(x, y, z);
+						p.AddMonom(m);
+						continue;
 					}
 				}
 				else
@@ -369,11 +407,12 @@ istream& operator >> (std::istream& istr, Polinom& p)
 					p.AddMonom(m);
 					break;
 				}
-				if (temporary[i-1]=='^')
+				if (temporary[i]=='^')
 				{
 
-					if (isdigit(temporary[i]))
+					if (isdigit(temporary[i+1]))
 					{
+						i++;
 						string temp_z;
 						temp_z = temporary[i];
 						istringstream(temp_z) >> z;

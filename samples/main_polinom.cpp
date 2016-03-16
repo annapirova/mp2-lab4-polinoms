@@ -66,8 +66,9 @@ void main()
 			cin >> counter;
 		}
 		int ad = 9;
-		cout << "If you want to enter new polinoms, press ""0"", if not, press press any number"<<endl;
-		cin >> c;
+		cout << "If you want to enter new polinoms, press ""0"", if not, press any number"<<endl;
+		cin>>c;
+		getchar();
 		}
 	}
 	catch (const char* error)
