@@ -194,11 +194,7 @@ istream& operator >> (std::istream& istr, Polinom& p)
 
 		if ((temporary[i]!='+')&&(temporary[i]!='-'))
 		{
-			/*if ((temporary[i]!='x'))
-			{
-				throw "Incorrect entries";
-			}
-			else*/
+
 			if (temporary[i]=='x')
 			{
 				if(i!=temporary.length()-1)

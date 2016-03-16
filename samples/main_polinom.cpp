@@ -8,54 +8,68 @@ void main()
 {
 	try
 	{
-	cout << "Enter polinom p1" <<endl;
-	Polinom p1;
-	cin >> p1;
-	cout << "Enter polinom p2" <<endl;
-	Polinom p2;
-	cin >> p2;
-	cout<<"Choose a operation"<<endl;
-
-	cout<<"1. p1 + p2"<<endl;
-	cout<<"2. p1 - p2"<<endl;
-	cout<<"3. p2 - p1"<<endl;
-	cout<<"4. p1*p2"<<endl;
-	cout<<"If you want to finish, enter ""999"<<endl;
-	int counter;
-	cin >> counter;
-	Polinom result;
-	while (counter!=999)
-	{
-	switch (counter)
+		int c=0;
+		while (c==0)
 		{
-		case 1: 
-			{
-				result = p1 + p2; 
-				break;
-			}
-		case 2: 
-			{
-				result = p1 - p2; 
-				break;
-			}
-		case 3: 
-			{
-				result = p2 - p1; 
-				break;
-			}
-		case 4: 
-			{
-				result = p1 * p2;
-				break;
-			}
-		default: cout <<"Incorrect enters" << endl; break;
-		}
-	cout << "Result of operation: " << result << endl;
-	cout << "Please, choose the operation or enter 999" << endl;
-	cin >> counter;
-	}
-	int ad = 9;
+		cout << "Enter polinom p1" <<endl;
+		Polinom p1;
+		cin >> p1;
+		cout << "Enter polinom p2" <<endl;
+		Polinom p2;
+		cin >> p2;
+		cout<<"Choose a operation"<<endl;
 		
+		cout<<"1. p1 + p2"<<endl;
+		cout<<"2. p1 - p2"<<endl;
+		cout<<"3. p2 - p1"<<endl;
+		cout<<"4. p1*p2"<<endl;
+		cout<<"If you want to finish, enter ""999"<<endl;
+		int counter;
+		cin >> counter;
+		Polinom result;
+		while (counter!=999)
+		{
+			bool flag = true;
+			switch (counter)
+			{
+			case 1: 
+				{
+					result = p1 + p2; 
+					break;
+				}
+			case 2: 
+				{
+					result = p1 - p2; 
+					break;
+				}
+			case 3: 
+				{
+					result = p2 - p1; 
+					break;
+				}
+			case 4: 
+				{
+					result = p1 * p2;
+					break;
+				}
+			default: 
+				{
+					cout <<"Incorrect enters" << endl;
+					flag = false;
+					break;	
+				}
+			}
+			if (flag==true)
+			{
+				cout << "Result of operation: " << result << endl;
+				cout << "Please, choose the operation or enter 999" << endl;
+			}
+			cin >> counter;
+		}
+		int ad = 9;
+		cout << "If you want to enter new polinoms, press ""0"", if not, press press any number"<<endl;
+		cin >> c;
+		}
 	}
 	catch (const char* error)
 	{
