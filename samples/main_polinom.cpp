@@ -18,7 +18,6 @@ void main()
 		Polinom p2;
 		cin >> p2;
 		cout<<"Choose a operation"<<endl;
-		
 		cout<<"1. p1 + p2"<<endl;
 		cout<<"2. p1 - p2"<<endl;
 		cout<<"3. p2 - p1"<<endl;

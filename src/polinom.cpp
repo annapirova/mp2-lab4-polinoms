@@ -155,7 +155,7 @@ istream& operator >> (std::istream& istr, Polinom& p)
 		if (temporary[i]=='+')
 			i++;
 		int x=0, y=0, z=0;
-		if ((isdigit(temporary[i])) || ((temporary[i]) == '-'))
+		if ((isdigit(temporary[i])) || ((temporary[i]) == '-') && (isdigit(temporary[i+1])))
 		{
 			string temp;
 			while (temporary[i] != 'x')
@@ -188,7 +188,15 @@ istream& operator >> (std::istream& istr, Polinom& p)
 				m.SetCoeff(1);
 			}
 			else
+				if ((temporary[i]=='-')&&((temporary[i+1] == 'x')||(temporary[i+1] == 'y')||(temporary[i+1] == 'z')))
+				{
+					m.SetCoeff(-1);
+					i++;
+				}
+				else
+				{
 				throw "Incorrect entries";
+				}
 
 		}
 
@@ -243,7 +251,11 @@ istream& operator >> (std::istream& istr, Polinom& p)
 							i++;
 						}
 						else
+						{
+							m.SetPower(x, y, z);
+							p.AddMonom(m);
 							break;
+						}
 					}
 					else 
 						throw "Incorrect entries";
@@ -257,11 +269,6 @@ istream& operator >> (std::istream& istr, Polinom& p)
 
 		if ((temporary[i]!='+')&&(temporary[i]!='-'))
 		{
-			//if (temporary[i]!='y')
-			//{
-			//	throw "Incorrect entries";
-			//}
-			//else
 			if (temporary[i]=='y')
 			{
 				if(i!=temporary.length()-1)
@@ -310,7 +317,11 @@ istream& operator >> (std::istream& istr, Polinom& p)
 							i++;
 						}
 						else
+						{
+							m.SetPower(x, y, z);
+							p.AddMonom(m);
 							break;
+						}
 					}
 					else 
 						throw "Incorrect entries";
