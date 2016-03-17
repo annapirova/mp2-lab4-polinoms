@@ -252,7 +252,7 @@ istream& operator >> (std::istream& istr, Polinom& p)
 				}
 				else
 				{
-					
+
 					x = 1;
 					m.SetPower(x, y, z);
 					p.AddMonom(m);
@@ -267,7 +267,7 @@ istream& operator >> (std::istream& istr, Polinom& p)
 						string temp_x;
 						temp_x = temporary[i];
 						istringstream(temp_x) >> x;
-						if(i!=temporary.length()-1)
+						if (i!=temporary.length()-1)
 						{
 							i++;
 						}
@@ -276,6 +276,13 @@ istream& operator >> (std::istream& istr, Polinom& p)
 							m.SetPower(x, y, z);
 							p.AddMonom(m);
 							break;
+						}
+						if ((temporary[i]=='+')||(temporary[i]=='-'))
+						{
+							i--;
+							m.SetPower(x, y, z);
+							p.AddMonom(m);
+							continue;
 						}
 					}
 					else 
@@ -342,7 +349,7 @@ istream& operator >> (std::istream& istr, Polinom& p)
 						string temp_y;
 						temp_y = temporary[i];
 						istringstream(temp_y) >> y;
-						if(i!=temporary.length()-1)
+						if (i!=temporary.length()-1)
 						{
 							i++;
 						}
@@ -351,6 +358,13 @@ istream& operator >> (std::istream& istr, Polinom& p)
 							m.SetPower(x, y, z);
 							p.AddMonom(m);
 							break;
+						}
+						if ((temporary[i]=='+')||(temporary[i]=='-'))
+						{
+							i--;
+							m.SetPower(x, y, z);
+							p.AddMonom(m);
+							continue;
 						}
 					}
 					else 

@@ -6,6 +6,23 @@ using namespace std;
 
 void main()
 {
+	/*Monom m1(5, 100);
+	Monom m2(3, 200);
+	Monom m3(5, 100);
+	Monom m4(-3, 200);
+	Monom m5(1, 125);
+	
+	Polinom p1, p2;
+	p1.AddMonom(m1);
+	p1.AddMonom(m2);
+	p2.AddMonom(m3);
+	p2.AddMonom(m4);
+	p2.AddMonom(m5);
+
+	Polinom res = p1 * p2;
+	cout << res;*/
+
+	
 	try
 	{
 		int c=0;
@@ -75,7 +92,7 @@ void main()
 	{
 		cout<<error<<endl;
 	}
-
+	
 
 
 	//	/*List c;
